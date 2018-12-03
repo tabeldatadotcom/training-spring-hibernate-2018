@@ -1,5 +1,9 @@
 package com.tabeldata.springhibernateexample.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -7,6 +11,9 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "master_nasabah")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Nasabah {
 
     @Id
@@ -37,5 +44,6 @@ public class Nasabah {
 
     @Column(name = "tanggal_permohonan")
     private Timestamp tanggalPermohonan;
+
 
 }
