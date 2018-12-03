@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "master_deposito")
@@ -15,7 +17,8 @@ import java.math.BigDecimal;
 public class Deposito {
 
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "dep_gen", allocationSize = 1, initialValue = 10, sequenceName = "deposito_seq")
+    @GeneratedValue(generator = "dep_gen")
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -29,9 +32,11 @@ public class Deposito {
     @Column(name = "saldo", nullable = false)
     private BigDecimal saldo;
 
-    @Column(name = "debit", nullable = false)
-    private BigDecimal debit;
-
-    @Column(name = "kredit", nullable = false)
-    private BigDecimal kredit;
+    @OneToMany
+    @JoinTable(
+            name = "history_transaksi_deposito",
+            joinColumns = @JoinColumn(name = "deposito_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "transaksi_id", nullable = false)
+    )
+    private List<TransactionDeposito> listTransaksi = new ArrayList<>();
 }
