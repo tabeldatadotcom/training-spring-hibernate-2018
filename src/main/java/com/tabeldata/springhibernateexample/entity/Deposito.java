@@ -1,10 +1,17 @@
 package com.tabeldata.springhibernateexample.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "master_deposito")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Deposito {
 
     @Id
